@@ -1,36 +1,35 @@
-import os
+"""
+This is the Root file for the Flask app.
+
+Todo:
+    - move routes to separate files
+"""
+
 from flask import Flask, jsonify
-import psycopg2
-from dotenv import load_dotenv
-
-load_dotenv()
-
-RDS_HOST = os.getenv("RDS_HOST")
-RDS_NAME = os.getenv("RDS_NAME")
-RDS_USER = os.getenv("RDS_USER")
-RDS_PW = os.getenv("RDS_PW")
+from config import old_get_db_connection, SQLALCHEMY_DATABASE_URI
+from models import db, Geo
 
 app = Flask(__name__)
 
-# This code was largely inspired by ChatGPT
-def get_db_connection():
-    """Establish a connection to the PostgreSQL database."""
-    try:
-        conn = psycopg2.connect(
-            host=RDS_HOST,
-            database=RDS_NAME,
-            user=RDS_USER,
-            password=RDS_PW,
-            port=5432
-        )
-        return conn
-    except Exception as e:
-        print("Error connecting to database:", e)
-        return None
 
-@app.route('/')
-def read_database():
-    conn = get_db_connection()
+app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db.init_app(app)
+
+@app.route("/")
+def get_geos():
+    """geo is short geographical point"""
+    geos = Geo.query.all()
+    return jsonify([geo.to_dict() for geo in geos])
+
+
+@app.route('/old')
+def old_read_database():
+    """
+    DEPRECATED: we should use SQL Alchemy instead.
+    This function is just here for training purpose and will be removed in future versions.
+    """
+    conn = old_get_db_connection()
     if conn is None:
         return jsonify({"error": "Database connection failed"}), 500
 

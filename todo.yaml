@@ -6,8 +6,6 @@
 
 - use Flask -- DONE
 
-- remove Jupyter
-
 - unit tests   -- TODO
 
 - dotenv  -- DONE
