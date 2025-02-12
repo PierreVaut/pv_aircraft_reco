@@ -1,4 +1,6 @@
-## Aircraft Recognition service
+# Aircraft Recognition service
+
+## AI project
 
 ### Recognition model
 
@@ -12,7 +14,7 @@ The model was subsequently trained using YOLOv11 object detection (Fast).
 
 ### Attributes
 
-Annotation was done "on the fly". Types were created based on the most recognizable types of aircraft. 
+Annotation was done "on the fly". Types were created based on the most recognizable types of aircraft.
 But it lacks consistency at this stage.
 
 We tried to identify different types of aircraft:
@@ -36,7 +38,10 @@ https://blog.roboflow.com/mean-average-precision
 
 ![image](https://github.com/user-attachments/assets/accb3471-1858-4cfc-9ef5-9d70749d3c11)
 
+## Backend Project
 
+```
+source my_env/bin/activate
+pip install -r requirements.txt
 
-
-
+```
