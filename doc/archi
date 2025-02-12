@@ -1,0 +1,55 @@
+add_observation: Observation
+req { geo_id: string, url: string }
+res {
+  observation_id: sring
+  geo_id: string
+  statusCode: string
+  error: null | string
+}
+
+get_observations
+req { geo_id: string }
+res: Observation[]
+
+
+
+
+// We could use timestamp instead of Date in the future for better precision
+Type Observation
+  observation_id: string
+  geo_id: string
+  date: DATE
+  prediction: PREDICTION
+
+Type PREDICTION
+  id: string
+  class: string
+  class_id: integer
+  confidence: float
+  geo_id: string
+
+Type RAW_PREDICTION
+  x: string
+  y: string
+  width: string
+  confidence: float
+  class: string
+  class_id: integer
+  detection_id: string
+
+
+
+
+TABLES
+
+GEO
+  geoid: string
+  name: string
+
+OBSERVATION
+  observation_id: string
+  geo_id: string
+  date: DATE
+  prediction: JSONB
+
+

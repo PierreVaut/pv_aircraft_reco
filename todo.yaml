@@ -1,0 +1,21 @@
+- Virtual ENv !   -- DONE
+
+- pep-8 Linter -- DONE
+
+- requirement.txt -- DONE
+
+- use Flask -- DONE
+
+- remove Jupyter
+
+- unit tests   -- TODO
+
+- dotenv  -- DONE
+
+# Nice to have:
+
+- type annotations
+
+- dataclasses!
+
+- decorator

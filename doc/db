@@ -1,0 +1,13 @@
+psql -h psgreco.cnzy6sazvtmn.us-east-1.rds.amazonaws.com -U psgadmin -p 5432 -W -d myrecodb
+
+
+
+CREATE TABLE geo ( id SERIAL PRIMARY KEY, name VARCHAR(100) NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
+
+INSERT INTO geo (name) VALUES ('Balbek');
+INSERT INTO geo (name) VALUES ('Saky');
+INSERT INTO geo (name) VALUES('Engels');
+INSERT INTO geo (name) VALUES ('Dyagilevo');
+INSERT INTO geo (name) VALUES ('Kursk');
+
+SELECT name FROM users WHERE id = 1;
