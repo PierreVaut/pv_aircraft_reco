@@ -40,8 +40,23 @@ https://blog.roboflow.com/mean-average-precision
 
 ## Backend Project
 
+Install the dependencies
+
+```
+pip install -r requirements.txt
+
+```
+
+Activate virtual env
+
 ```
 source my_env/bin/activate
-pip install -r requirements.txt
+
+```
+
+Start the Server
+
+```
+python app.py
 
 ```

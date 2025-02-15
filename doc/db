@@ -1,6 +1,8 @@
 psql -h psgreco.cnzy6sazvtmn.us-east-1.rds.amazonaws.com -U psgadmin -p 5432 -W -d myrecodb
 
 
+# this table was created manually
+# in the future we should use declative procedure
 
 CREATE TABLE geo ( id SERIAL PRIMARY KEY, name VARCHAR(100) NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
 
@@ -10,4 +12,26 @@ INSERT INTO geo (name) VALUES('Engels');
 INSERT INTO geo (name) VALUES ('Dyagilevo');
 INSERT INTO geo (name) VALUES ('Kursk');
 
-SELECT name FROM users WHERE id = 1;
+# test that the data is correct
+\d geo
+SELECT * FROM geo
+SELECT name FROM geo WHERE id = 1;
+
+
+
+# this table was created manually
+# in the future we should use declative procedure
+
+CREATE TABLE observation (
+    id SERIAL PRIMARY KEY,
+    geo_id INTEGER NOT NULL,
+    date DATE NOT NULL,
+    analysis JSONB NOT NULL,
+    asset_url VARCHAR(100) NOT NULL,
+    external_url VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (geo_id) REFERENCES Geo(id) ON DELETE SET NULL
+);
+
+# test that the data is correct
+\d observation

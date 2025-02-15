@@ -1,0 +1,9 @@
+curl -X POST http://127.0.0.1:5000/observation \
+ -H "Content-Type: application/json" \
+ -d '{
+"geo_id": 1,
+"date": "2024-02-20",
+"analysis": {"test": 1, "result": 456},
+"asset_url": "http://example.com/asset.png",
+"external_url": "http://example.com/external"
+}'
