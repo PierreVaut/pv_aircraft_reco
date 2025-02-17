@@ -2,9 +2,17 @@
 
 This API provides endpoints for managing and analyzing geographic observations. It integrates with **Roboflow** to analyze aircraft data and stores observations in a PostgreSQL database using SQLAlchemy.
 
+![image](https://github.com/user-attachments/assets/3b5d9249-2d14-427b-bd5d-7e60c986b811)
+
+![image](https://github.com/user-attachments/assets/a0b8a8b8-d42e-4591-91f3-02d8b0a837f8)
+
+![image](https://github.com/user-attachments/assets/d2d7e6fe-899f-4b1a-97e6-e2754d9b8592)
+
+
+
 ## Environment Variables
 
-Setup an .env file with the following fields (see {}.env_example`)
+Setup an .env file with the following fields (see `.env_example`)
 
 - `ROBOFLOW_APIKEY`: API key for Roboflow integration
 
@@ -13,7 +21,7 @@ Setup an .env file with the following fields (see {}.env_example`)
 - `RDS_PW`: Master password
 - `RDS_HOST`: PostgreSQL endpoint
 
-## Run te server in local
+## Run the server in local
 
 Install the dependencies
 
@@ -97,7 +105,7 @@ http://localhost:5000
 
 **Request Parameters:**
 
-geo_id (integer, required): The ID of the geographic location.
+- geo_id (integer, required): The ID of the geographic location.
 
 **Response:**
 
@@ -177,9 +185,12 @@ geo_id (integer, required): The ID of the geographic location.
   }
   ```
 
-## Database Configuration
+## PostgreSQL Database Configuration
 
 This project uses PostgreSQL, hosted on AWS RDS. The database is managed using SQLAlchemy.
+
+![image](https://github.com/user-attachments/assets/98f0299e-af71-4915-a20d-5f1b21c4f309)
+
 
 ### Database Connection
 
@@ -215,7 +226,8 @@ We tried to identify different types of aircraft:
 ## Performance
 
 More on that later...
-https://blog.roboflow.com/mean-average-precision
+
+Reference: https://blog.roboflow.com/mean-average-precision
 
 ![image](https://github.com/user-attachments/assets/206ae31a-35e0-4d5f-864a-38fd4e4772f5)
 
