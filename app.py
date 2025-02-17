@@ -77,6 +77,30 @@ def add_observation():
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
 
+@app.route('/observations/<int:geo_id>', methods=['GET'])
+def get_observations_by_geo(geo_id):
+    try:
+        observations = Observation.query.filter_by(geo_id=geo_id).all()
+
+        if not observations:
+            return jsonify({"message": "No observations found for this geo_id"}), 404
+
+        result = [
+            {
+                "id": obs.id,
+                "geo_id": obs.geo_id,
+                "date": obs.date.isoformat(),
+                "analysis": obs.analysis,
+                "asset_url": obs.asset_url,
+                "external_url": obs.external_url
+            }
+            for obs in observations
+        ]
+
+        return jsonify(result), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route("/geos")

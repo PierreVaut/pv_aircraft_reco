@@ -87,7 +87,53 @@ http://localhost:5000
 
 ---
 
-### 2. Get All Geos
+### 2. Get Observations by Geo ID
+
+#### **GET** `/observations/<geo_id>`
+
+**Description:**
+
+- Retrieves all observations associated with a specific geo_id.
+
+**Request Parameters:**
+
+geo_id (integer, required): The ID of the geographic location.
+
+**Response:**
+
+- **200 OK** (If observations exist)
+
+  ```json
+  [
+    {
+      "id": 5,
+      "geo_id": 1,
+      "date": "2024-02-17",
+      "analysis": { "detected": "aircraft" },
+      "asset_url": "https://example.com/asset.jpg",
+      "external_url": "https://example.com/info"
+    }
+  ]
+  ```
+
+- **404 Not Found** (If no observations exist for the given geo_id)
+
+  ```json
+  {
+    "message": "No observations found for this geo_id"
+  }
+  ```
+
+- **500 Internal Server Error** (On unexpected errors)
+  ```json
+  {
+    "error": "Internal server error message"
+  }
+  ```
+
+---
+
+### 3. Get All Geos
 
 #### **GET** `/geos`
 
@@ -107,7 +153,7 @@ http://localhost:5000
 
 ---
 
-### 3. Get Geos (Deprecated Method)
+### 4. Get Geos (Deprecated Method)
 
 #### **GET** `/geos_old`
 
@@ -174,5 +220,3 @@ https://blog.roboflow.com/mean-average-precision
 ![image](https://github.com/user-attachments/assets/206ae31a-35e0-4d5f-864a-38fd4e4772f5)
 
 ![image](https://github.com/user-attachments/assets/accb3471-1858-4cfc-9ef5-9d70749d3c11)
-
-# Backend Project
