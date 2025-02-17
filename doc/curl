@@ -7,3 +7,13 @@ curl -X POST http://127.0.0.1:5000/observation \
 "asset_url": "http://example.com/asset.png",
 "external_url": "http://example.com/external"
 }'
+
+
+curl -X POST http://127.0.0.1:5000/observation \
+ -H "Content-Type: application/json" \
+ -d '{
+"geo_id": 6,
+"date": "2022-11-02",
+"asset_url": "https://aircraft-reco.s3.us-east-1.amazonaws.com/geoid-06_2022-11-02.png",
+"external_url": "https://livingatlas.arcgis.com/wayback/#active=36557&mapCenter=61.29002%2C55.26241%2C18"
+}'

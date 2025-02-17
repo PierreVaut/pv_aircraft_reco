@@ -6,17 +6,16 @@ Todo:
 """
 
 from datetime import date
+import requests
 from flask import Flask, jsonify, request
-from flask_sqlalchemy import SQLAlchemy
-from config import old_get_db_connection, SQLALCHEMY_DATABASE_URI
+from config import old_get_db_connection, SQLALCHEMY_DATABASE_URI, ROBOFLOW_APIKEY
 from models import db, Geo, Observation
-
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-db = SQLAlchemy()
+# Singleton SQL ALchemy 'db' instance is imported from models.py
 db.init_app(app)
 
 with app.app_context():
@@ -30,19 +29,41 @@ def add_observation():
 
         geo_id = data.get('geo_id')
         date_value = data.get('date')
-        analysis = data.get('analysis')
         asset_url = data.get('asset_url')
         external_url = data.get('external_url')
 
-        if not date_value or not analysis or not asset_url or not external_url:
+
+
+        if not date_value or not asset_url or not geo_id:
             return jsonify({"error": "Missing required fields"}), 400
 
         date_obj = date.fromisoformat(date_value)
 
+
+        url = "https://detect.roboflow.com/aircraft-reco-1/2"
+        params = {
+            "api_key": ROBOFLOW_APIKEY,
+            "confidence": 40,
+            "overlap": 30,
+            "format": "json",
+            "image": "https://aircraft-reco.s3.us-east-1.amazonaws.com/geoid-06_2022-11-02.png"
+        }
+
+        headers = {
+        "accept": "*/*"
+        }
+
+        response = requests.post(url, params=params, headers=headers, timeout = 10)
+
+        print(response.json())
+
+        if response.status_code != 200:
+            return jsonify({"error": "Failed to fetch analysis"}), 500
+
         new_observation = Observation(
             geo_id=geo_id,
             date=date_obj,
-            analysis=analysis,
+            analysis=response.json(),
             asset_url=asset_url,
             external_url=external_url
         )

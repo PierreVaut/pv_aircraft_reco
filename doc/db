@@ -11,10 +11,11 @@ INSERT INTO geo (name) VALUES ('Saky');
 INSERT INTO geo (name) VALUES('Engels');
 INSERT INTO geo (name) VALUES ('Dyagilevo');
 INSERT INTO geo (name) VALUES ('Kursk');
+INSERT INTO geo (name) VALUES ('Chelyabinsk');
 
 # test that the data is correct
-\d geo
-SELECT * FROM geo
+\d geo;
+SELECT * FROM geo;
 SELECT name FROM geo WHERE id = 1;
 
 
@@ -34,4 +35,4 @@ CREATE TABLE observation (
 );
 
 # test that the data is correct
-\d observation
+\d observation;
