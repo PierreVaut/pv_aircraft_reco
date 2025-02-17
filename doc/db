@@ -1,4 +1,5 @@
-psql -h psgreco.cnzy6sazvtmn.us-east-1.rds.amazonaws.com -U psgadmin -p 5432 -W -d myrecodb
+# the DB will be deleted when the project is completed
+psql -h psgreco.<HOST>.us-east-1.rds.amazonaws.com -U <user> -p 5432 -W -d <db name>
 
 
 # this table was created manually
