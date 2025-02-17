@@ -1,3 +1,8 @@
+![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Roboflow](https://img.shields.io/badge/Roboflow-800080?style=for-the-badge&logo=roboflow&logoColor=white)
+
+
 # Aircraft Recognition service
 
 This API provides endpoints for managing and analyzing geographic observations. It integrates with **Roboflow** to analyze aircraft data and stores observations in a PostgreSQL database using SQLAlchemy.
